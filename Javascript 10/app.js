@@ -20,7 +20,7 @@ function power(a,b){
 
 
 function isLeapYear(year) {
-    if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
+    if (year % 4 === 0) {
         return true;
     } else {
         return false;
@@ -64,42 +64,98 @@ document.write("The area of the triangle is: " + area.toFixed(2));
 // for single character as of now.
 
 
+function customIndexOf(string, letter) {
 
-function customIndexOf(str, char) {
-    for (let i = 0; i < str.length; i++) {
-        if (str[i] === char) {
-            return i;
+        for (var i=0; i<string.length; i++){
+    
+            if(string[i] === letter){
+                return i;
+            }
         }
+        var i = 0
+        while (i < string.length) {
+            if (string[i] === letter) {
+                return i
+            }
+            i++
+        }
+        return -1
     }
-
-    return -1;
-}
-var myString = "Hello, world!";
-var charToFind = 'o';
-
-console.log(customIndexOf(myString, charToFind));
+    var str= prompt("Enter a string: ")
+    var ltr= prompt("Enter a letter: ")
+    alert(customIndexOf(str, ltr))
 
 
 // 6. Write a function to delete all vowels from a sentence. Assume
 // that the sentence is not more than 25 characters long.
 
 
-function removeVowels(sentence) {
-    let result = '';
-    for (let i = 0; i < sentence.length; i++) {
-        let char = sentence[i];
-        if (
-            char !== 'a' && char !== 'e' && char !== 'i' &&
-            char !== 'o' && char !== 'u' &&
-            char !== 'A' && char !== 'E' && char !== 'I' &&
-            char !== 'O' && char !== 'U'
-        ) {
-            result += char;
+function deleteVowel(str){
+var vowel = "aeiouAEIOU"
+var result = ""
+
+var i =0;
+while(i<str.length){
+if(vowel.indexOf(str[i])===-1){
+    result += str[i]
+}
+    i++
+}
+return result
+}
+alert(deleteVowel("hello world"))
+
+
+
+// 7. Write a function with switch statement to count the number of
+// occurrences of any two vowels in succession in a line of text.
+
+
+function countVowelPairs(text){
+    var count = 0;
+    var i = 0;
+    while(i<text.length-1){
+        var char1 = text[i].toLowerCase()
+        var char2 = text[i+1].toLowerCase()
+        var vowelPairs = []
+
+        switch(true){
+            case (char1==="a" && (char2 ==="a"|| char2==="e"|| char2 ==="i"|| char2 ==="o" || char2=== "u")):
+            case (char1==="e" && (char2 ==="a"|| char2==="e"|| char2 ==="i"|| char2 ==="o" || char2=== "u")):
+            case (char1==="i" && (char2 ==="a"|| char2==="e"|| char2 ==="i"|| char2 ==="o" || char2=== "u")):  
+            case (char1==="o" && (char2 ==="a"|| char2==="e"|| char2 ==="i"|| char2 ==="o" || char2=== "u")):  
+            case (char1==="u" && (char2 ==="a"|| char2==="e"|| char2 ==="i"|| char2 ==="o" || char2=== "u")):
+                count++
+                vowelPairs.push(char1+char2)
+                console.log(vowelPairs)
+                break
         }
+        i++
+    }
+    return count;
+}
+alert(countVowelPairs("Please read this application and give me gratuity"))
+
+
+
+// 8. The distance between two cities (in km.) is input through the
+// keyboard. Write four functions to convert and print this
+// distance in meters, feet, inches and centimeters.
+
+
+function calculateOvertimePay(hoursWorked) {
+    const regularHours = 40;
+    const overtimeRate = 12.00;
+    let overtimePay = 0;
+
+    if (hoursWorked > regularHours) {
+        const overtimeHours = hoursWorked - regularHours;
+        overtimePay = overtimeHours * overtimeRate;
     }
 
-    return result;
+    return overtimePay;
 }
+var hoursWorked = 45;
+var overtimePay = calculateOvertimePay(hoursWorked);
 
-const sentence = "Hello, world!";
-console.log(removeVowels(sentence));
+alert(`The overtime pay for ${hoursWorked} hours worked is Rs. ${overtimePay.toFixed(2)}`);
